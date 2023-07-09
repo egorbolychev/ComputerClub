@@ -1,3 +1,8 @@
+.PHONY: run
+run:
+	docker build -q -t yadro-task .
+	docker run --rm -it yadro-task
+
 .PHONY: build
 build:
 	go build -v ./cmd/task

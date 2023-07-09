@@ -15,4 +15,6 @@ WORKDIR /build
 COPY ./configs ./configs 
 COPY --from=builder /build/task /build/task
 
-CMD ["./task"]
+ARG CONFIG="configs/test1.txt"
+ENV CONFIG ${CONFIG}
+CMD ./task --config-path ${CONFIG}

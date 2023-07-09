@@ -1,6 +1,10 @@
 .PHONY: run
 run:
-	docker build -q -t yadro-task .
+ifdef config
+	docker build --build-arg CONFIG=$(config) -q -t yadro-task .
+else
+	docker build --build-arg CONFIG=configs/test1.txt -q -t yadro-task .
+endif
 	docker run --rm -it yadro-task 
 
 .PHONY: build

@@ -136,7 +136,3 @@ func TestController_Wait(t *testing.T) {
 	}
 
 }
-
-// func TestController_ClientGone(t *testing.T) {
-
-// }

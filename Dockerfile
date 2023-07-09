@@ -10,7 +10,7 @@ RUN go build -o task ./cmd/task
 
 FROM alpine
 
-WORKDIR /build
+WORKDIR /build 
 
 COPY ./configs ./configs 
 COPY --from=builder /build/task /build/task

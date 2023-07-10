@@ -3,7 +3,7 @@ run:
 ifdef config
 	docker build --build-arg CONFIG=$(config) -q -t yadro-task .
 else
-	docker build --build-arg CONFIG=configs/test_1.txt -q -t yadro-task .
+	docker build --build-arg CONFIG=test_1.txt -q -t yadro-task .
 endif
 	docker run --rm -it yadro-task 
 

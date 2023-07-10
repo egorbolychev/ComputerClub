@@ -7,6 +7,7 @@ import (
 	"time"
 )
 
+// Basic parameters of the club
 type Config struct {
 	MaxTables int
 	TimeStart time.Time
@@ -14,11 +15,12 @@ type Config struct {
 	Cost      int
 }
 
-// NewConfig ...
 func NewConfig() *Config {
 	return &Config{}
 }
 
+// Parse and Validate data from string array to config struct.
+// If data isn't valid - return wrong string as a error
 func (conf *Config) ConfigureConfig(confStr []string) error {
 	maxTables, err := strconv.Atoi(confStr[0])
 	if err != nil {

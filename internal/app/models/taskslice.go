@@ -1,5 +1,6 @@
 package models
 
+// Struct for sorting Tasks
 type TaskSlice []*Task
 
 func (t TaskSlice) Len() int { return len(t) }

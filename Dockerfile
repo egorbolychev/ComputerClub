@@ -2,8 +2,6 @@ FROM golang:alpine AS builder
 
 WORKDIR /build
 
-ADD go.mod .
-
 COPY . .
 
 RUN go build -o task ./cmd/task
@@ -15,6 +13,7 @@ WORKDIR /build
 COPY ./configs ./configs 
 COPY --from=builder /build/task /build/task
 
-ARG CONFIG="configs/test1.txt"
-ENV CONFIG ${CONFIG}
-CMD ./task --config-path ${CONFIG}
+ARG CONFIG="configs/test_1.txt"
+ENV CONFIG configs/${CONFIG}
+
+CMD ./task ${CONFIG}

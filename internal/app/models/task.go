@@ -21,6 +21,8 @@ func NewTask() *Task {
 	return &Task{}
 }
 
+// Parse and validate task from string.
+// If string isn't valid return that one
 func (t *Task) ParseTask(taskStr string, maxTables int) error {
 	s := strings.Split(taskStr, " ")
 	lenS := len(s)
@@ -65,6 +67,7 @@ func (t *Task) ParseTask(taskStr string, maxTables int) error {
 	return nil
 }
 
+// Log task in stdout
 func (t *Task) Log() {
 	time := t.Time.Format("15:04")
 	s := fmt.Sprintf("%s %d %s", time, t.Id, t.Username)

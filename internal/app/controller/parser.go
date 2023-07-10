@@ -6,6 +6,8 @@ import (
 	"os"
 )
 
+// Parse input config file.
+// Return two arrays: 3 config lines and all event lines
 func Parse(confPath string) ([]string, []string, error) {
 	var confStrings []string
 	var taskStrings []string

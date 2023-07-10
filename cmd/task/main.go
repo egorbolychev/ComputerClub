@@ -8,15 +8,16 @@ import (
 )
 
 var (
-	configPath string
+	configPath = "configs/test_1.txt"
 )
-
-func init() {
-	flag.StringVar(&configPath, "config-path", "configs/test1.txt", "path to config txt file")
-}
 
 func main() {
 	flag.Parse()
+	if flag.Arg(0) != "" {
+		configPath = flag.Arg(0)
+	}
+
+	log.SetFlags(0)
 
 	confStr, taskStr, err := controller.Parse(configPath)
 	if err != nil {

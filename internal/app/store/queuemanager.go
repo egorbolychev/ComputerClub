@@ -1,5 +1,7 @@
 package store
 
+// Manage clients who are waiting for empty table.
+// Data struct: queue, stores usernames
 type QueueManager struct {
 	queu []string
 }

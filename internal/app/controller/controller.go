@@ -7,6 +7,7 @@ import (
 	"github.com/egorbolychev/internal/app/store"
 )
 
+// Main stract that consists all application data
 type Controller struct {
 	config *Config
 	store  *store.Store
@@ -19,6 +20,7 @@ func NewController(config *Config, store *store.Store) *Controller {
 	}
 }
 
+// Main application loop that reads all avaliable tasks
 func (c *Controller) ReadAndServe() {
 	log.Println(c.config.TimeStart.Format("15:04"))
 
@@ -44,6 +46,8 @@ func (c *Controller) ReadAndServe() {
 	c.OnExit()
 }
 
+// Event - a new client has arrived.
+// If client already in the club or event out of time - generate error task
 func (c *Controller) ClientCame(task *models.Task) {
 	if c.store.Client().IsIn(task.Username) {
 		c.store.Task().GenerateTask(task.Time, "YouShallNotPass", 13, 0)
@@ -56,6 +60,8 @@ func (c *Controller) ClientCame(task *models.Task) {
 	c.store.Client().Add(task.Username)
 }
 
+// Event - the client sat down at the table.
+// If client not in the club or place is already busy - generate error task
 func (c *Controller) ClientSatDown(task *models.Task) {
 	if !c.store.Client().IsIn(task.Username) {
 		c.store.Task().GenerateTask(task.Time, "ClientUnknown", 13, 0)
@@ -73,6 +79,8 @@ func (c *Controller) ClientSatDown(task *models.Task) {
 	c.store.Client().SatDown(task.Username, task.TableNum)
 }
 
+// Event - the client queued up.
+// If there are empty tables or queue is full - generate error task
 func (c *Controller) Wait(task *models.Task) {
 	if c.store.Table().HasEmptyTable() {
 		c.store.Task().GenerateTask(task.Time, "ICanWaitNoLonger", 13, 0)
@@ -86,6 +94,10 @@ func (c *Controller) Wait(task *models.Task) {
 	c.store.Queu().Add(task.Username)
 }
 
+// Event - Client left.
+// If client out of club - generate error task.
+// If client was at the table - occurs payment.
+// If queue is not empty - the person in line takes a table
 func (c *Controller) ClientGone(task *models.Task) {
 	if !c.store.Client().IsIn(task.Username) {
 		c.store.Task().GenerateTask(task.Time, "ClientUnknown", 13, 0)
@@ -102,6 +114,7 @@ func (c *Controller) ClientGone(task *models.Task) {
 	c.store.Client().Remove(task.Username)
 }
 
+// Event - Client left
 func (c *Controller) ClientGoneOver(task *models.Task) {
 	if !c.store.Client().IsIn(task.Username) {
 		c.store.Task().GenerateTask(task.Time, "ClientUnknown", 13, 0)
@@ -114,6 +127,7 @@ func (c *Controller) ClientGoneOver(task *models.Task) {
 	c.store.Client().Remove(task.Username)
 }
 
+// The final payment is made, all clients leave, and the tables' proceeds are tallied.
 func (c *Controller) OnExit() {
 	for _, user := range c.store.Client().GetListByAlthabet() {
 		c.store.Task().GenerateTask(c.config.TimeEnd, user, 11, 0)

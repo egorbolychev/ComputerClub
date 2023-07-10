@@ -1,7 +1,13 @@
 package store
 
-import "github.com/egorbolychev/internal/app/models"
+import (
+	"sort"
 
+	"github.com/egorbolychev/internal/app/models"
+)
+
+// Manage the clients.
+// Data struct: hash table, key - username
 type ClientManager struct {
 	clients map[string]*models.Client
 }
@@ -33,6 +39,7 @@ func (m *ClientManager) GetListByAlthabet() []string {
 	for key := range m.clients {
 		result = append(result, key)
 	}
+	sort.Strings(result)
 
 	return result
 }

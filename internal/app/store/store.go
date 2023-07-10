@@ -6,6 +6,7 @@ import (
 	"github.com/egorbolychev/internal/app/models"
 )
 
+// A structure that stores all data during the application's operation
 type Store struct {
 	TaskManager   *TaskManager
 	TableManager  *TableManager
@@ -17,6 +18,7 @@ func New() *Store {
 	return &Store{}
 }
 
+// Configure Task stack and tables map from input
 func (s *Store) ConfigureStore(tasksStr []string, maxTables int) error {
 	var newTask *models.Task
 	var prev models.Task

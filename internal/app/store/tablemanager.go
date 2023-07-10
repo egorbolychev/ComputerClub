@@ -6,6 +6,8 @@ import (
 	"github.com/egorbolychev/internal/app/models"
 )
 
+// Manage the tables.
+// Data struct: hash table, key - id of table
 type TableManager struct {
 	tables map[int]*models.Table
 }

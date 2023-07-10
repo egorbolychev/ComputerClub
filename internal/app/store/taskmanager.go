@@ -7,6 +7,9 @@ import (
 	"github.com/egorbolychev/internal/app/models"
 )
 
+// Manage the tasks.
+// Data struct: Stack.
+// Program continues until it's empty
 type TaskManager struct {
 	taskStack models.TaskSlice
 }

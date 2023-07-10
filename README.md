@@ -9,11 +9,6 @@
 <p color="gray">make build config=*file_name*.txt</p>
 <p>Запуск в докер контейнере:</p>
 <p color="gray">make run config=*file_name*.txt</p>
-<h3>Unix системы</h3>
-<p>Стандартный запуск:</p>
-<p color="gray">make build config=*file_name*.txt</p>
-<p>Запуск в докер контейнере:</p>
-<p color="gray">make run config=*file_name*.txt</p>
 <h3>Windows системы</h3>
 <p>Стандартный запуск:</p>
 <p color="gray">GOOS=windows GOARCH=amd64 go build -o task.exe ./cmd/task</p>

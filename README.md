@@ -9,7 +9,7 @@
 <p>./bin/task *file_name*.txt</p>
 <p>Windows  системы:</p>
 <p>.\bin\task.exe *file_name*.txt</p>
-<h3>Запуск в Docker:</h3>
+<h3>Запуск в Docker</h3>
 <p>Unix  системы:</p>
 <p>make docker-run config=*file_name*.txt</p>
 <p>Windows  системы:</p>

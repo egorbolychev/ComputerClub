@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"log"
 
 	"github.com/egorbolychev/internal/app/controller"
@@ -14,7 +15,7 @@ var (
 func main() {
 	flag.Parse()
 	if flag.Arg(0) != "" {
-		configPath = flag.Arg(0)
+		configPath = fmt.Sprintf("configs/%s", flag.Arg(0))
 	}
 
 	log.SetFlags(0)

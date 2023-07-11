@@ -3,19 +3,18 @@
 <h3>Как добавить новую txt конфигурацию</h3>
 <p>Добавлять необходимо в папку configs</p>
 <p>При запуска приложения название файла передается вторым аргументом (без указания будет взято значение по умолчанию - test_1.txt)</p>
-<p>Необходимо находиться в корневой папке приложения. При стандартном запуске в системе должен быть установлен golang.</p>
-<h3>Unix системы</h3>
-<p>Стандартный запуск:</p>
-<p color="gray">make build config=*file_name*.txt</p>
-<p>Запуск в докер контейнере:</p>
-<p color="gray">make run config=*file_name*.txt</p>
-<h3>Windows системы</h3>
-<p>Стандартный запуск:</p>
-<p color="gray">GOOS=windows GOARCH=amd64 go build -o task.exe ./cmd/task</p>
-<p color="gray">task.exe *file_name*.txt</p>
-<p>Запуск в докер контейнере:</p>
-<p color="gray">docker build --build-arg CONFIG=configs/*file_name*.txt -q -t yadro-task .</p>
-<p color="gray">docker run --rm -it yadro-task</p>
+<strong>При запуске необходимо находиться в корневой папке приложения.</strong>
+<h3>Стандартный запуск</h3>
+<p>Unix  системы:</p>
+<p>./bin/task *file_name*.txt</p>
+<p>Windows  системы:</p>
+<p>.\bin\task.exe *file_name*.txt</p>
+<h3>Запуск в Docker:</h3>
+<p>Unix  системы:</p>
+<p>make docker-run config=*file_name*.txt</p>
+<p>Windows  системы:</p>
+<p>docker build --build-arg CONFIG=*filename*.txt -q -t yadro-task .</p>
+<p>docker run --rm -it yadro-task </p>
 <h2>Важные замечания:</h2>
 <p>В техническом заданиине указано в какой момент происходит оплата. В данной реализации оплата происходит, когда клиент встает из-за стола (даже если он просто пересаживается за другой)</p>
 <p>Также в задании не указано, что делать с событиями, которые происходят после закрытия клуба. В данной реализации выполняются <strong>только</strong> события до закрытия, остальные опускаются, так как клуб закрыт</p>

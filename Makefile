@@ -1,5 +1,5 @@
-.PHONY: run
-run:
+.PHONY: docker-run
+docker-run:
 ifdef config
 	docker build --build-arg CONFIG=$(config) -q -t yadro-task .
 else
@@ -7,13 +7,13 @@ else
 endif
 	docker run --rm -it yadro-task 
 
-.PHONY: build
+.PHONY: build-run
 build:
-	go build -v ./cmd/task
+	go build -o ./bin/task ./cmd/task
 ifdef config
-	./task configs/$(config)
+	./bin/task configs/$(config)
 else
-	./task
+	./bin/task
 endif
 
 .DEFAULT_GOAL := run
